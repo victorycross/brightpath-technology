@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: victorycross/brightpath-technology
+  repo: victorycross/brightpath-technology/admin
   branch: preview
   base_url: https://api.netlify.com
   auth_endpoint: auth
