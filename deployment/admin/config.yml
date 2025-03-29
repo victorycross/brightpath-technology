@@ -1,0 +1,83 @@
+backend:
+  name: git-gateway
+  branch: preview
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "pages"
+    label: "Pages"
+    files:
+      - name: "home"
+        label: "Home Page"
+        file: "content/home.md"
+        fields:
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Hero Heading", name: "hero_heading", widget: "string"}
+          - {label: "Hero Subtext", name: "hero_subtext", widget: "text"}
+          - {label: "Welcome Section", name: "welcome_text", widget: "markdown"}
+          - {label: "Mission Statement", name: "mission_text", widget: "markdown"}
+      
+      - name: "services"
+        label: "Services Page"
+        file: "content/services.md"
+        fields:
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Introduction", name: "intro", widget: "markdown"}
+          - label: "Services"
+            name: "services"
+            widget: "list"
+            fields:
+              - {label: "Service Name", name: "name", widget: "string"}
+              - {label: "Description", name: "description", widget: "markdown"}
+              - {label: "Icon", name: "icon", widget: "string", required: false}
+      
+      - name: "about"
+        label: "About Us Page"
+        file: "content/about.md"
+        fields:
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Company Story", name: "company_story", widget: "markdown"}
+          - {label: "Team Information", name: "team_info", widget: "markdown"}
+          - {label: "Values", name: "values", widget: "markdown"}
+      
+      - name: "case-studies"
+        label: "Case Studies Page"
+        file: "content/case-studies.md"
+        fields:
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Introduction", name: "intro", widget: "markdown"}
+          - label: "Case Studies"
+            name: "case_studies"
+            widget: "list"
+            fields:
+              - {label: "Industry", name: "industry", widget: "string"}
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Description", name: "description", widget: "markdown"}
+              - {label: "Results", name: "results", widget: "markdown"}
+      
+      - name: "testimonials"
+        label: "Testimonials Page"
+        file: "content/testimonials.md"
+        fields:
+          - {label: "Title", name: "title", widget: "string"}
+          - label: "Testimonials"
+            name: "testimonials"
+            widget: "list"
+            fields:
+              - {label: "Quote", name: "quote", widget: "text"}
+              - {label: "Name", name: "name", widget: "string"}
+              - {label: "Position", name: "position", widget: "string"}
+              - {label: "Company", name: "company", widget: "string"}
+      
+      - name: "contact"
+        label: "Contact Page"
+        file: "content/contact.md"
+        fields:
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Introduction", name: "intro", widget: "markdown"}
+          - {label: "Address", name: "address", widget: "text"}
+          - {label: "Phone", name: "phone", widget: "string"}
+          - {label: "Email", name: "email", widget: "string"}
+          - {label: "Hours", name: "hours", widget: "text"}

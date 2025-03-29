@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BrightPath Technology - Content Manager</title>
+    <!-- Include the script that builds the page and powers Netlify CMS -->
+    <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+    <!-- Include Auth0 script -->
+    <script src="https://cdn.auth0.com/js/auth0/9.14/auth0.min.js"></script>
+    <script>
+      // Auth0 Configuration
+      const auth0 = new auth0.WebAuth({
+        domain: 'dev-brightpathtechnology.us.auth0.com',
+        clientID: 'jZ2AsoN2MlKhzsDH6lytQ8bzq93yn5kN',
+        redirectUri: 'https://brightpathtechnology.netlify.app/admin/callback',
+        responseType: 'token id_token',
+        scope: 'openid profile email'
+      });
+      
+      // Initialize Netlify CMS with Auth0 authentication
+      window.netlifyIdentity = {
+        on: (event, callback) => {
+          if (event === 'init') {
+            callback();
+          }
+        },
+        logout: () => {
+          auth0.logout({
+            returnTo: 'https://brightpathtechnology.netlify.app/admin'
+          });
+        },
+        open: () => {
+          auth0.authorize();
+        },
+        currentUser: () => {
+          return {
+            jwt: () => {
+              return localStorage.getItem('id_token');
+            }
+          };
+        }
+      };
+      
+      // Handle Auth0 authentication callback
+      if (window.location.hash) {
+        auth0.parseHash((err, authResult) => {
+          if (authResult && authResult.accessToken && authResult.idToken) {
+            localStorage.setItem('access_token', authResult.accessToken);
+            localStorage.setItem('id_token', authResult.idToken);
+            window.location.href = '/admin/';
+          } else if (err) {
+            console.log(err);
+            alert('Error: ' + err.error + '. Check the console for further details.');
+          }
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <!-- The CMS will be loaded here -->
+  </body>
+</html>
